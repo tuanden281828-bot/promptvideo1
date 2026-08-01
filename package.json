@@ -4,6 +4,9 @@
   "private": true,
   "description": "AI Video Hollywood Strategist - tao kich ban video ngan bang Google Gemini API",
   "main": "server.js",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "start": "node server.js"
   },
