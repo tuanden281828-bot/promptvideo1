@@ -1,0 +1,9 @@
+node_modules/
+.env
+
+# Anh/tai lieu tham khao ca nhan - khong dua len repo cong khai
+*.jpg
+*.jpeg
+*.png
+*.docx
+~$*

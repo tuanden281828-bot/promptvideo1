@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIDEO STUDIO</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-icon">🎬</span>
+    <div>
+      <h1>VIDEO STUDIO</h1>
+      <p class="subtitle"><span class="flow">HOOK → PAIN → STORY → INSIGHT → VISION → CTA</span></p>
+    </div>
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- LEFT: INPUT -->
+  <section class="panel" id="inputPanel">
+    <h2 class="panel-title">① NHẬP Ý TƯỞNG</h2>
+
+    <label class="field">
+      <span>Chủ đề / Ý tưởng video *</span>
+      <input type="text" id="topic" placeholder="VD: KOL AI Mai Trang 22 tuổi xinh đẹp, review sản phẩm đính kèm">
+    </label>
+
+    <label class="field">
+      <span>Sản phẩm / Dịch vụ (tùy chọn)</span>
+      <input type="text" id="product" placeholder="VD: Serum dưỡng da phục hồi ban đêm">
+    </label>
+
+    <label class="field">
+      <span>Câu chốt / Thông điệp chính (tùy chọn)</span>
+      <textarea id="message" rows="3" placeholder="VD: Việc tốt lên mỗi ngày, giờ chỉ cần 2 tiếng. Một người làm được việc của cả phòng."></textarea>
+    </label>
+
+    <div class="field-row">
+      <label class="field">
+        <span>Thời lượng</span>
+        <select id="duration">
+          <option value="16-2">16s · 2 scene</option>
+          <option value="24-3">24s · 3 scene</option>
+          <option value="32-4" selected>32s · 4 scene</option>
+          <option value="45-6">45s · 6 scene</option>
+          <option value="60-8">60s · 8 scene</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Nền tảng</span>
+        <select id="platform">
+          <option value="9:16 · TikTok/Reels" selected>9:16 · TikTok/Reels</option>
+          <option value="9:16 · YouTube Shorts">9:16 · YouTube Shorts</option>
+          <option value="1:1 · Instagram Feed">1:1 · Instagram Feed</option>
+          <option value="16:9 · YouTube">16:9 · YouTube</option>
+        </select>
+      </label>
+    </div>
+
+    <label class="field">
+      <span>Phong cách kể chuyện</span>
+      <select id="style">
+        <option value="Storytelling" selected>Storytelling</option>
+        <option value="Review trực tiếp">Review trực tiếp</option>
+        <option value="Hài hước">Hài hước</option>
+        <option value="Cảm xúc sâu lắng">Cảm xúc sâu lắng</option>
+      </select>
+    </label>
+
+    <label class="field">
+      <span>Tên nhân vật chính</span>
+      <input type="text" id="charName" placeholder="VD: KOL MAI TRANG">
+    </label>
+
+    <div class="field-row">
+      <div class="field">
+        <span class="label-with-btn">👤 Nhân vật (giới tính · độ tuổi)
+          <button type="button" class="ghost-btn" id="charImgBtn">📎 Ảnh nhân vật</button>
+        </span>
+        <div class="field-row tight">
+          <select id="gender">
+            <option>Nữ</option>
+            <option>Nam</option>
+            <option>Phi giới tính</option>
+          </select>
+          <select id="age">
+            <option>18–20 tuổi</option>
+            <option selected>20–25 tuổi</option>
+            <option>25–30 tuổi</option>
+            <option>30–40 tuổi</option>
+            <option>40+ tuổi</option>
+          </select>
+        </div>
+        <input type="file" id="charImgInput" accept="image/*" hidden>
+      </div>
+    </div>
+
+    <label class="field">
+      <span class="label-with-btn">👗 Trang phục
+        <button type="button" class="ghost-btn" id="outfitImgBtn">📎 Ảnh trang phục</button>
+      </span>
+      <textarea id="outfit" rows="2" placeholder="VD: Áo sơ mi trắng, veston đen, làn da trắng hồng"></textarea>
+      <input type="file" id="outfitImgInput" accept="image/*" hidden>
+    </label>
+
+    <label class="field">
+      <span class="label-with-btn">🛍️ Ảnh sản phẩm
+        <button type="button" class="ghost-btn" id="productImgBtn">📎 Ảnh sản phẩm</button>
+      </span>
+      <input type="file" id="productImgInput" accept="image/*" hidden>
+    </label>
+
+    <button id="generateBtn" class="primary-btn">✨ Tạo kịch bản video</button>
+  </section>
+
+  <!-- RIGHT: OUTPUT -->
+  <section class="output" id="outputPanel">
+
+    <div class="panel result-header">
+      <h2 id="resultTitle">🎬 Kịch bản của bạn sẽ hiện ở đây</h2>
+      <div class="result-meta" id="resultMeta"></div>
+      <div class="result-actions">
+        <button class="ghost-btn" id="copyAllBtn">📋 Copy toàn bộ</button>
+        <button class="ghost-btn accent" id="copyPromptBtn">✨ Copy Master Prompt (lấy lời thoại từ AI)</button>
+      </div>
+    </div>
+
+    <div class="panel">
+      <h3 class="section-title">📎 ẢNH THAM CHIẾU</h3>
+      <p class="hint">
+        Dùng các ảnh này để khóa nhân vật/sản phẩm: <b>Midjourney --cref [ảnh] --cw 100</b> · <b>Kling/Runway/Hailuo</b> đặt làm first frame (image-to-video) · <b>GPT Image</b> tải lên kèm prompt · <b>Google Studio (Gemini) &amp; Veo 3</b> dùng ảnh làm reference khi tạo video.
+      </p>
+      <div class="ref-images">
+        <div class="ref-item">
+          <div class="thumb" id="charThumb">👤</div>
+          <span>Nhân vật</span>
+        </div>
+        <div class="ref-item">
+          <div class="thumb" id="outfitThumb">👗</div>
+          <span>Trang phục</span>
+        </div>
+        <div class="ref-item">
+          <div class="thumb" id="productThumb">🛍️</div>
+          <span>Sản phẩm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="script-header">
+        <h3 class="section-title">② KỊCH BẢN VIDEO</h3>
+        <button class="ghost-btn small" id="copyScriptBtn">Copy</button>
+      </div>
+      <div id="scriptList" class="script-list">
+        <p class="placeholder">Điền thông tin bên trái và bấm "Tạo kịch bản video" để bắt đầu.</p>
+      </div>
+    </div>
+
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>

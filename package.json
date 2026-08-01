@@ -1,0 +1,14 @@
+{
+  "name": "neon-story-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI Video Hollywood Strategist - tao kich ban video ngan bang Google Gemini API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.21.2"
+  }
+}
